@@ -201,7 +201,7 @@ class Singleton(type):
 
 
 # class BaseCoordinator(with_metaclass(Singleton, object)):
-class BaseCoordinator(Singleton):
+class BaseCoordinator(metaclass=Singleton):
     relid = None  # Peer relation-id, set by __init__
     relname = None
 
