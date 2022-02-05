@@ -13,10 +13,8 @@
 # limitations under the License.
 
 from datetime import datetime, timedelta
-import json
-import tempfile
 import unittest
-from mock import call, MagicMock, patch, sentinel
+from mock import call, patch
 
 from ops_coordinator.base_coordinator import base_coordinator
 from ops_coordinator import ops_coordinator as coordinator
