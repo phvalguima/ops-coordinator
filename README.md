@@ -36,6 +36,9 @@ The coordinator manages the lock at the beginning and the end of charm's lifecyc
 Add the following to your charm.
 
 ```
+
+    from ops_coordinator.ops_coordinator import RestartCharmEvent, OpsCoordinator
+
     class CharmBaseSubclass(...):
 
         on = RestartCharmEvent()

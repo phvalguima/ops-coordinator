@@ -12,12 +12,20 @@
 
 from setuptools import setup
 import os
+import pkg_resources
 
 
 version_file = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                             'VERSION'))
 with open(version_file) as v:
     VERSION = v.read().strip()
+
+
+def get_install_reqs():
+    res = []
+    with open('requirements.txt') as reqs:
+        res = [ str(r) for r in pkg_resources.parse_requirements(reqs) ]
+    return res
 
 
 SETUP = {
@@ -27,14 +35,10 @@ SETUP = {
     'url': "https://github.com/phvalguima/ops-coordinator",
     'packages': [
         'ops_coordinator',
-        'ops_coordinator.base_coordinator'
+        'ops_coordinator.base_coordinator',
+        'ops_coordinator.operator_libs_linux.v1'
     ],
-    'install_requires': [
-        'ops',
-        'pyOpenSSL',
-        'netifaces',
-        'charmhelpers'
-    ],
+    'install_requires': get_install_reqs(),
     'scripts': [
     ],
     'license': "Apache License 2.0",

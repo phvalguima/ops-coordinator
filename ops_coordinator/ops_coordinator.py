@@ -237,6 +237,11 @@ from ops_coordinator.operator_libs_linux.v1.systemd import (
 
 logger = logging.getLogger(__name__)
 
+__all__ = [
+    "RestartEvent",
+    "RestartCharmEvent",
+    "OpsCoordinator"
+]
 
 class RestartEvent(EventBase):
     """
