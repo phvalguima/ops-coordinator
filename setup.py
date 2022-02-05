@@ -38,7 +38,7 @@ SETUP = {
     'scripts': [
     ],
     'license': "Apache License 2.0",
-    'long_description': open('README.rst').read(),
+    'long_description': open('README.md').read(),
     'description': 'Lib to manage locks between charm units peer relations',
 }
 
