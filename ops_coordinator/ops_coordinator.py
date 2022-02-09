@@ -265,18 +265,16 @@ class RestartEvent(EventBase):
     def __init__(self, handle, ctx, services=[]):
 
         super().__init__(handle)
-        self._ctx = json.dumps(ctx)
+        self._ctx = json.dumps(ctx) if isinstance(ctx, dict) else ctx
         self._svc = copy.deepcopy(services)
 
     def snapshot(self):
-        super().snapshot()
         return {
             "ctx": self._ctx,
             "svc": ",".join(self._svc)
         }
 
     def restore(self, snapshot):
-        super().restore(snapshot)
         self._ctx = snapshot["ctx"]
         self._svc = snapshot["svc"].split(",")
 
@@ -303,10 +301,6 @@ class RestartEvent(EventBase):
         """
         if coordinator.acquire('restart'):
             for ev in self.svc:
-                # Unmask and enable service
-                service_resume(ev)
-                # Reload and restart
-                service_reload(ev)
                 service_restart(ev)
             # Now that restart is done, save lock state and release it.
             # Inform that restart has been successful
